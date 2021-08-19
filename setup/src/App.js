@@ -5,17 +5,7 @@ import data from "./data";
 function App() {
   const [people, setPeople] = useState(data);
   const [value, setValue] = useState(0);
-  // UNA FORMA DE VOLVER AL 0 CUANDO SE LLEGA AL ULTIMO OBJ EN LA LISTA Y DE IR AL ULTIMO OBJ CUANDO SE BAJA DEL 0
-  // const checkNum = (num) => {
-  //   if (num < 0) {
-  //     return data.length - 1;
-  //   }
-  //   if (num > data.length - 1) {
-  //     return 0;
-  //   }
-  //   return num;
-  // };
-  //LO MISMO CON USEEFFECT
+
   useEffect(() => {
     const lastIndex = people.length - 1;
     if (value < 0) {
@@ -30,7 +20,7 @@ function App() {
     let slider = setInterval(() => {
       setValue(value + 1);
     }, 3000);
-    return () => clearInterval(slider); //previene que se bugee IMPORTANTE
+    return () => clearInterval(slider); 
   }, [value]);
   return (
     <>
@@ -41,7 +31,6 @@ function App() {
           </h2>
         </div>
         <div className="section-center">
-          {/*esto es para cambiar las classes de css dependiendo de que value sea el activo */}
           {people.map((person, personIndex) => {
             const { id, image, name, title, quote } = person;
             let position = "nextSlide";
@@ -70,7 +59,7 @@ function App() {
           <button
             className="prev"
             onClick={() => {
-              // setValue(checkNum(value - 1)); ESTO ES PARA LA FUNCTION CHECKNUM
+              
               setValue(value - 1);
             }}
           >
@@ -79,7 +68,7 @@ function App() {
           <button
             className="next"
             onClick={() => {
-              // setValue(checkNum(value + 1)); ESTO ES PARA LA FUNCTION CHECKNUM
+            
               setValue(value + 1);
             }}
           >
